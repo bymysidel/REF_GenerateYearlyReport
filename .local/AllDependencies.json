@@ -422,7 +422,7 @@
           "lib/net40-Client/UiPath.OCR.Activities.dll": {}
         }
       },
-      "UiPath.OCR.Contracts/2.1.0": {
+      "UiPath.OCR.Contracts/2.0.0": {
         "type": "package",
         "compile": {
           "lib/net45/_._": {}
@@ -552,7 +552,7 @@
           }
         }
       },
-      "UiPath.Vision/1.7.0": {
+      "UiPath.Vision/1.6.1": {
         "type": "package",
         "compile": {
           "lib/net452/_._": {}
@@ -1023,15 +1023,15 @@
         "uipath.ocr.activities.nuspec"
       ]
     },
-    "UiPath.OCR.Contracts/2.1.0": {
-      "sha512": "9OHOHKwf7jwRS7tbdZdn5TNvC4invbWWAzgE4qbuWMvMn3m8MiwvJnyUSLUWzUZavDpOii8vWg70s5wh7X/BYA==",
+    "UiPath.OCR.Contracts/2.0.0": {
+      "sha512": "0GdsdJ/Q3ErDF2GlR2vaS7nxeRz4KM9TwSEZyr++9qG0gW86FYiGaNEYQ3NsDPW/z5/AlID11RhEJMwepf8MPA==",
       "type": "package",
-      "path": "uipath.ocr.contracts/2.1.0",
+      "path": "uipath.ocr.contracts/2.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/net45/UiPath.OCR.Contracts.dll",
-        "uipath.ocr.contracts.2.1.0.nupkg.sha512",
+        "uipath.ocr.contracts.2.0.0.nupkg.sha512",
         "uipath.ocr.contracts.nuspec"
       ]
     },
@@ -1134,10 +1134,10 @@
         "uipath.uiautomation.activities.nuspec"
       ]
     },
-    "UiPath.Vision/1.7.0": {
-      "sha512": "IPtTAIdRMWoMEO7f+6gLrn+FkZoEDW1RnMiOq0nSmJfH2cVj8ZelI4aDePEd23nzszL8buS0ZehTe2PAMLOaqw==",
+    "UiPath.Vision/1.6.1": {
+      "sha512": "017bcpvB1uJ0vyeuqWWkz7R09xdBFQrjMW+0k2WE8zPwphQoortvv0MRs5//m1T8bg6flI5G23huKj8Uio80ug==",
       "type": "package",
-      "path": "uipath.vision/1.7.0",
+      "path": "uipath.vision/1.6.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1207,7 +1207,7 @@
         "lib/net452/UiPath.Vision.MicrosoftCloud.dll",
         "lib/net452/UiPath.Vision.Tesseract.dll",
         "lib/net452/UiPath.Vision.dll",
-        "uipath.vision.1.7.0.nupkg.sha512",
+        "uipath.vision.1.6.1.nupkg.sha512",
         "uipath.vision.nuspec"
       ]
     }
@@ -1221,21 +1221,21 @@
       "UiPath.Excel.Activities >= 2.6.2 <= 2.6.2",
       "UiPath.Mail.Activities >= 1.5.1 <= 1.5.1",
       "UiPath.OCR.Activities >= 1.0.5998.20115 <= 1.0.5998.20115",
-      "UiPath.OCR.Contracts >= 2.1.0 <= 2.1.0",
+      "UiPath.OCR.Contracts >= 2.0.0 <= 2.0.0",
       "UiPath.System.Activities >= 19.7.0 <= 19.7.0",
       "UiPath.UIAutomation.Activities >= 19.7.0 <= 19.7.0",
-      "UiPath.Vision >= 1.7.0 <= 1.7.0"
+      "UiPath.Vision >= 1.6.1 <= 1.6.1"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\reng\\.nuget\\packages\\": {}
+    "C:\\Users\\R2\\.nuget\\packages\\": {}
   },
   "project": {
     "restore": {
       "projectUniqueName": "REF_GenerateYearlyReport",
       "projectName": "REF_GenerateYearlyReport",
       "projectPath": "E:\\WorkSpace\\REF_GenerateYearlyReport\\.local",
-      "packagesPath": "C:\\Users\\reng\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\R2\\.nuget\\packages\\",
       "outputPath": "E:\\WorkSpace\\REF_GenerateYearlyReport\\.local"
     },
     "frameworks": {
@@ -1274,7 +1274,7 @@
           "UiPath.OCR.Contracts": {
             "include": "Runtime",
             "target": "Package",
-            "version": "[2.1.0, 2.1.0]"
+            "version": "[2.0.0, 2.0.0]"
           },
           "UiPath.System.Activities": {
             "include": "Runtime",
@@ -1289,7 +1289,7 @@
           "UiPath.Vision": {
             "include": "Runtime",
             "target": "Package",
-            "version": "[1.7.0, 1.7.0]"
+            "version": "[1.6.1, 1.6.1]"
           }
         }
       }

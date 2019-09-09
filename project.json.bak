@@ -9,7 +9,7 @@
     "UiPath.Excel.Activities": "[2.6.2]",
     "UiPath.Mail.Activities": "[1.5.1]",
     "UiPath.OCR.Activities": "[1.0.5998.20115]",
-    "UiPath.OCR.Contracts": "[2.0.0]",
+    "UiPath.OCR.Contracts": "[2.1.0]",
     "UiPath.System.Activities": "[19.7.0]",
     "UiPath.UIAutomation.Activities": "[19.7.0]",
     "UiPath.Vision": "[1.6.1]"

@@ -1,14 +1,14 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="UpdateWorkItem" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="in_ACMESystemTab" Type="InArgument(ui:Browser)" />
-    <x:Property Name="in_WIID" Type="InArgument(x:String)" />
-    <x:Property Name="in_UploadResultHash" Type="InArgument(x:String)" />
+    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="in_Hash" Type="InArgument(x:String)" />
+    <x:Property Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>408,591</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>408,747</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>UpdateWorkItem_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -60,22 +60,27 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="UpdateWorkItem" sap:VirtualizedContainerService.HintSize="368,471" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="UpdateWorkItem" sap:VirtualizedContainerService.HintSize="368,667" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:String" Default="%[k(down)]c[k(enter)]" Name="keyStatusComplete" />
+      <Variable x:TypeArguments="x:String" Default="%[k(down)]c[k(enter)]" Name="keyStatus" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:NavigateTo Browser="[in_ACMESystemTab]" DisplayName="导航到 workitem update page" sap:VirtualizedContainerService.HintSize="330,59" sap2010:WorkflowViewState.IdRef="NavigateTo_1" Url="[in_Config(&quot;Url_ACMESystem_WorkItemUpdate&quot;).ToString + in_WIID]" />
-    <ui:TypeInto DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="True" DelayBefore="1000" DisplayName="输入信息 'TEXTAREA  newComment'" EmptyField="False" sap:VirtualizedContainerService.HintSize="330,134" sap2010:WorkflowViewState.IdRef="TypeInto_1" SendWindowMessages="False" SimulateType="False" Text="[in_UploadResultHash + &quot;[k(tab)][k(down)]c[k(enter)]&quot;]">
+    <ui:NavigateTo Browser="[in_ACMESystemTab]" DisplayName="导航到" sap:VirtualizedContainerService.HintSize="330,59" sap2010:WorkflowViewState.IdRef="NavigateTo_1" Url="[in_Config(&quot;Url_ACMESystem_WorkItemUpdate&quot;).ToString + in_TransactionItem.SpecificContent(&quot;WIID&quot;).ToString]" />
+    <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" Activate="True" ClickBeforeTyping="False" DelayMS="2000" DisplayName="输入信息 'TEXTAREA  newComment'" EmptyField="False" sap:VirtualizedContainerService.HintSize="330,134" sap2010:WorkflowViewState.IdRef="TypeInto_1" SendWindowMessages="False" SimulateType="True" Text="[in_Hash]">
       <ui:TypeInto.Target>
-        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="8f94bbc7a78a8342ad9fa4bc1a0e4397" Selector="&lt;html app='chrome.exe' title='ACME System 1 - Work Items' /&gt;&lt;webctrl tag='TEXTAREA' /&gt;" WaitForReady="COMPLETE" />
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="8f94bbc7a78a8342ad9fa4bc1a0e4397" Selector="&lt;html app='chrome.exe' title='ACME System 1 - Work Items' /&gt;&lt;webctrl tag='TEXTAREA' /&gt;" WaitForReady="INTERACTIVE" />
       </ui:TypeInto.Target>
     </ui:TypeInto>
-    <ui:Click DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="1000" DisplayName="单击 'BUTTON  buttonUpdate'" sap:VirtualizedContainerService.HintSize="330,106" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+    <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="发送热键 'BUTTON'" EmptyField="False" sap:VirtualizedContainerService.HintSize="330,156" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="[keyStatus]" KeyModifiers="None" SendWindowMessages="False" SpecialKey="False">
+      <ui:SendHotkey.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="87419d238b04d1e8994080772999301d" Selector="&lt;html app='chrome.exe' title='ACME System 1 - Work Items' /&gt;&lt;webctrl aaname='---' tag='BUTTON' /&gt;" WaitForReady="INTERACTIVE" />
+      </ui:SendHotkey.Target>
+    </ui:SendHotkey>
+    <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="单击 'BUTTON  buttonUpdate'" sap:VirtualizedContainerService.HintSize="330,106" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
       <ui:Click.CursorPosition>
         <ui:CursorPosition Position="Center">
           <ui:CursorPosition.OffsetX>
@@ -87,7 +92,7 @@
         </ui:CursorPosition>
       </ui:Click.CursorPosition>
       <ui:Click.Target>
-        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="b10e9a9248606ab69fbd04b5cba249de" Selector="&lt;html app='chrome.exe' title='ACME System 1 - Work Items' /&gt;&lt;webctrl id='buttonUpdate' tag='BUTTON' /&gt;" WaitForReady="COMPLETE" />
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="8b2149a67c84a1c5124e7066d93534d1" Selector="&lt;html app='chrome.exe' title='ACME System 1 - Work Items' /&gt;&lt;webctrl id='buttonUpdate' tag='BUTTON' /&gt;" WaitForReady="INTERACTIVE" />
       </ui:Click.Target>
     </ui:Click>
   </Sequence>
