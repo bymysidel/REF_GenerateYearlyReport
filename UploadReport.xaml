@@ -1,0 +1,335 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="UploadReport" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://schemas.uipath.com/workflow/activities/cv" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing" xmlns:uc="clr-namespace:UiPath.CV;assembly=UiPath.CV" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_TaxID" Type="InArgument(x:String)" />
+    <x:Property Name="in_ACMESystemTab" Type="InArgument(ui:Browser)" />
+    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="in_YearlyReportPath" Type="InArgument(x:String)" />
+    <x:Property Name="out_UploadResultHash" Type="OutArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>592,2687</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>UploadReport_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="21">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="40">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="UploadReport" sap:VirtualizedContainerService.HintSize="552,2567" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Default="[in_Config(&quot;Url_ACMESystem_ReportUpload&quot;).ToString]" Name="Url_ACMESystem_ReportUpload" />
+      <Variable x:TypeArguments="x:String" Name="strProjectPath" />
+      <Variable x:TypeArguments="x:String" Name="strYearlyReportAbsPath" />
+      <Variable x:TypeArguments="x:Boolean" Name="noYearlyReport" />
+      <Variable x:TypeArguments="x:String" Default="qr1KS71NOPdDnLZK5SsznBGVWJGxxSEDl+tFl3C3+y9kjYQXlqcswHB20rvk6lhO" Name="CV_API" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:GetEnvironmentVariable DisplayName="获取环境变量" sap:VirtualizedContainerService.HintSize="514,59" sap2010:WorkflowViewState.IdRef="GetEnvironmentVariable_1" Variable="CurrentDirectory" VariableValue="[strProjectPath]" />
+    <Assign DisplayName="赋值" sap:VirtualizedContainerService.HintSize="514,62" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[strYearlyReportAbsPath]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[strProjectPath + "\" + in_YearlyReportPath]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:NavigateTo Browser="[in_ACMESystemTab]" DisplayName="导航到" sap:VirtualizedContainerService.HintSize="514,59" sap2010:WorkflowViewState.IdRef="NavigateTo_1" Url="[Url_ACMESystem_ReportUpload]" />
+    <ui:TypeInto DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="True" DelayBefore="3000" DisplayName="输入信息 'INPUT  vendorTaxID'" EmptyField="False" sap:VirtualizedContainerService.HintSize="514,134" sap2010:WorkflowViewState.IdRef="TypeInto_1" SendWindowMessages="False" SimulateType="False" Text="[in_TaxID + &quot;[k(tab)][k(down)][k(down)][k(down)][k(enter)]&quot;]">
+      <ui:TypeInto.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="ad775033e1c9b6f4d480203c861b7609" Selector="&lt;html app='chrome.exe' title='ACME System 1 - Reports - Upload Yearly Report' /&gt;&lt;webctrl id='vendorTaxID' tag='INPUT' /&gt;" WaitForReady="COMPLETE" />
+      </ui:TypeInto.Target>
+    </ui:TypeInto>
+    <ui:Click DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="1000" DisplayName="单击 'LABEL'" sap:VirtualizedContainerService.HintSize="514,106" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+      <ui:Click.CursorPosition>
+        <ui:CursorPosition Position="Center">
+          <ui:CursorPosition.OffsetX>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:CursorPosition.OffsetX>
+          <ui:CursorPosition.OffsetY>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:CursorPosition.OffsetY>
+        </ui:CursorPosition>
+      </ui:Click.CursorPosition>
+      <ui:Click.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="7f3bcd52ee1406bf56b0cbb1e69d4092" Selector="&lt;html app='chrome.exe' title='ACME System 1 - Reports - Upload Yearly Report' /&gt;&lt;webctrl aaname=' &#x9;&#x9;&#x9;&#x9;&#x9; &#x9;&#x9;&#x9;&#x9;&#x9;Select Report File &#x9;&#x9;&#x9;&#x9;' tag='LABEL' /&gt;" WaitForReady="COMPLETE" />
+      </ui:Click.Target>
+    </ui:Click>
+    <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="True" DisplayName="输入信息 'ComboBox'" EmptyField="False" sap:VirtualizedContainerService.HintSize="514,134" sap2010:WorkflowViewState.IdRef="TypeInto_2" SendWindowMessages="False" SimulateType="False" Text="[strYearlyReportAbsPath]">
+      <ui:TypeInto.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="0d452acbe48df51bd08b182a69914bad" Selector="&lt;wnd app='chrome.exe' cls='#32770' omit:title='開く' /&gt;&lt;wnd ctrlid='1148' /&gt;&lt;wnd ctrlid='1148' /&gt;" WaitForReady="COMPLETE" />
+      </ui:TypeInto.Target>
+    </ui:TypeInto>
+    <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="单击 'Button'" sap:VirtualizedContainerService.HintSize="514,106" sap2010:WorkflowViewState.IdRef="Click_5" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+      <ui:Click.CursorPosition>
+        <ui:CursorPosition Position="Center">
+          <ui:CursorPosition.OffsetX>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:CursorPosition.OffsetX>
+          <ui:CursorPosition.OffsetY>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:CursorPosition.OffsetY>
+        </ui:CursorPosition>
+      </ui:Click.CursorPosition>
+      <ui:Click.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="a1fd187b72db8c4d069ba4449992afe2" Selector="&lt;wnd app='chrome.exe' cls='#32770' omit:title='打开' /&gt;&lt;wnd ctrlid='1' omit:title='打开(&amp;amp;O)' /&gt;" WaitForReady="COMPLETE" />
+      </ui:Click.Target>
+    </ui:Click>
+    <ui:UiElementExists DisplayName="存在元素 'chrome.exe  開く'" Exists="[noYearlyReport]" sap:VirtualizedContainerService.HintSize="514,106" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
+      <ui:UiElementExists.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="4f3d35bd1f506454ee9da06490203dae" Selector="&lt;wnd app='chrome.exe' cls='#32770' idx='1' title='開く' /&gt;" TimeoutMS="3000" WaitForReady="COMPLETE" />
+      </ui:UiElementExists.Target>
+    </ui:UiElementExists>
+    <If Condition="[noYearlyReport]" DisplayName="IF条件 noReport" sap:VirtualizedContainerService.HintSize="514,551" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Then>
+        <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="368,395" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="发送热键 'NReport Return'" EmptyField="False" sap:VirtualizedContainerService.HintSize="330,157" sap2010:WorkflowViewState.IdRef="SendHotkey_3" Key="%[k(enter)]" KeyModifiers="None" SendWindowMessages="True" SpecialKey="False">
+            <ui:SendHotkey.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="7bffad89dc022ee08622214a2cddb16c" Selector="&lt;wnd app='chrome.exe' cls='#32770' idx='1' omit:title='打开' /&gt;" WaitForReady="INTERACTIVE" />
+            </ui:SendHotkey.Target>
+          </ui:SendHotkey>
+          <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="单击 'cancel'" sap:VirtualizedContainerService.HintSize="330,106" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+            <ui:Click.CursorPosition>
+              <ui:CursorPosition Position="Center">
+                <ui:CursorPosition.OffsetX>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetX>
+                <ui:CursorPosition.OffsetY>
+                  <InArgument x:TypeArguments="x:Int32" />
+                </ui:CursorPosition.OffsetY>
+              </ui:CursorPosition>
+            </ui:Click.CursorPosition>
+            <ui:Click.Target>
+              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="022aa4990e7bf9cf2280669b3d17e895" Selector="&lt;wnd app='chrome.exe' cls='#32770' omit:title='開く' /&gt;&lt;wnd ctrlid='2' title='*' /&gt;" WaitForReady="INTERACTIVE" />
+            </ui:Click.Target>
+          </ui:Click>
+        </Sequence>
+      </If.Then>
+    </If>
+    <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="单击 'BUTTON  buttonUpload'" sap:VirtualizedContainerService.HintSize="514,106" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+      <ui:Click.CursorPosition>
+        <ui:CursorPosition Position="Center">
+          <ui:CursorPosition.OffsetX>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:CursorPosition.OffsetX>
+          <ui:CursorPosition.OffsetY>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:CursorPosition.OffsetY>
+        </ui:CursorPosition>
+      </ui:Click.CursorPosition>
+      <ui:Click.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e2f1b253979f5a981ac14f4bbfc3de85" Selector="&lt;html app='chrome.exe' title='ACME System 1 - Reports - Upload Yearly Report' /&gt;&lt;webctrl id='buttonUpload' tag='BUTTON' /&gt;" WaitForReady="INTERACTIVE" />
+      </ui:Click.Target>
+    </ui:Click>
+    <p:CVScope ContinueOnError="{x:Null}" ApiKey="[CV_API]" DelayBefore="300" DisplayName="计算机视觉屏幕范围 'chrome.exe ACME'" sap:VirtualizedContainerService.HintSize="514,446" sap2010:WorkflowViewState.IdRef="CVScope_1" Server="https://cv.uipath.com">
+      <p:CVScope.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="CVSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="执行" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <p:CvClickWithDescriptor DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_DOUBLE" Descriptor="[&quot;Target: AnyText (513,74,243,10)&quot; +&#xA;&quot;Anchor: Button (865,104,65,35)&quot; +&#xA;&quot;Anchor: AnyText (513,19,209,14)&quot; +&#xA;&quot;Anchor: Text 'Report was uploaded' (513,53,132,12)&quot;]" DesignTimeScaleFactor="1" DisplayName="计算机视觉单击 - 任何文本" sap:VirtualizedContainerService.HintSize="400,106" sap2010:WorkflowViewState.IdRef="CvClickWithDescriptor_1" InformativeScreenshot="3093588159889cfe140c49fb814c14f0" KeyModifiers="None" MouseButton="BTN_LEFT" TimeoutMS="30000">
+              <p:CvClickWithDescriptor.CursorPosition>
+                <ui:CursorPosition Position="Center">
+                  <ui:CursorPosition.OffsetX>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetX>
+                  <ui:CursorPosition.OffsetY>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetY>
+                </ui:CursorPosition>
+              </p:CvClickWithDescriptor.CursorPosition>
+              <p:CvClickWithDescriptor.DesignTimeDescriptor>
+                <uc:CvDescriptor>
+                  <uc:CvDescriptor.Anchors>
+                    <x:Array Type="uc:CvElementDescriptor">
+                      <uc:CvElementDescriptor DesignTimeArea="865, 104, 65, 35" ElementType="Button" />
+                      <uc:CvElementDescriptor DesignTimeArea="513, 19, 209, 14" ElementType="AnyText" />
+                      <uc:CvElementDescriptor DesignTimeArea="513, 53, 132, 12" ElementType="Text" Text="Report was uploaded" />
+                    </x:Array>
+                  </uc:CvDescriptor.Anchors>
+                  <uc:CvDescriptor.Target>
+                    <uc:CvElementDescriptor DesignTimeArea="513, 74, 243, 10" ElementType="AnyText" />
+                  </uc:CvDescriptor.Target>
+                </uc:CvDescriptor>
+              </p:CvClickWithDescriptor.DesignTimeDescriptor>
+              <p:CvClickWithDescriptor.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
+              </p:CvClickWithDescriptor.Target>
+            </p:CvClickWithDescriptor>
+            <ui:CopySelectedText DisplayName="复制选定文本" sap:VirtualizedContainerService.HintSize="400,22" sap2010:WorkflowViewState.IdRef="CopySelectedText_1" SendWindowMessages="False" TimeoutMS="5000">
+              <ui:CopySelectedText.Result>
+                <OutArgument x:TypeArguments="x:String">[out_UploadResultHash]</OutArgument>
+              </ui:CopySelectedText.Result>
+            </ui:CopySelectedText>
+          </Sequence>
+        </ActivityAction>
+      </p:CVScope.Body>
+      <p:CVScope.DesignTimeCache>
+        <uc:CVCache InformativeScreenshot="a5e23e5b2ce7cb2e354c50f686b7bbdb" LogicalPosition="-8, -8" OcrText="ACME System 1 acme-test.uipath.com 03W??? Home Log Out&#xA;Report was uploaded - conﬁrmation id is&#xA;7a59SefOdf878d88C-9b36a299a4cl7cd&#xA;Reports Upload Yeal&#xA;Home Reports — Upload Yearly Report&#xA;Please ﬁll in the following form to be able to upload a speciﬁc Vendor Yearly&#xA;Report.&#xA;Vendor TaxID:&#xA;FR065748&#xA;Year:&#xA;2018 v&#xA;Select Report File -= ~::~« v&#xA;Upload Report&#xA;Copyright © 2017 ACME Systems" Position="-8, -8" ScaleFactor="1" ScreenshotGuid="273356a7-07dd-4f59-86e5-4b7d73e381fd" ServerVersion="1">
+          <uc:CVCache.CvUiElements>
+            <scg:List x:TypeArguments="uc:CvElementInfo" Capacity="32">
+              <uc:CvElementInfo Category="InputBox" Confidence="DesignTime" Region="217, 290, 491, 36" Score="1" />
+              <uc:CvElementInfo Category="Button" Confidence="DesignTime" Region="219, 461, 118, 38" Score="1" />
+              <uc:CvElementInfo Category="Button" Confidence="DesignTime" Region="865, 104, 65, 35" Score="1" />
+              <uc:CvElementInfo Category="InputBox" Confidence="DesignTime" Region="219, 365, 219, 35" Score="1" />
+              <uc:CvElementInfo Category="Button" Confidence="DesignTime" Region="217, 414, 141, 35" Score="1" />
+              <uc:CvElementInfo Category="ArrowButton" Confidence="DesignTime" Region="412, 370, 21, 26" Score="1" />
+              <uc:CvElementInfo Category="Button" Confidence="DesignTime" Region="358, 421, 188, 20" Score="1" />
+              <uc:CvElementInfo Category="InputBox" Confidence="DesignTime" Region="358, 422, 188, 20" Score="1" />
+              <uc:CvElementInfo Category="InputBox" Confidence="DesignTime" Region="656, 159, 635, 37" Score="1" />
+              <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="1168, 14, 45, 22" Score="1" />
+              <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="270, 15, 15, 19" Score="1" />
+              <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="1235, 14, 61, 22" Score="1" />
+              <uc:CvElementInfo Category="ArrowButton" Confidence="Runtime" Region="206, 170, 15, 16" Score="1" />
+              <uc:CvElementInfo Category="ArrowButton" Confidence="Runtime" Region="1235, 14, 60, 21" Score="1" />
+              <uc:CvElementInfo Category="ArrowButton" Confidence="Runtime" Region="1167, 14, 47, 22" Score="1" />
+              <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="1168, 14, 46, 22" Score="1" />
+              <uc:CvElementInfo Category="InputBox" Confidence="Runtime" Region="1168, 15, 46, 21" Score="1" />
+              <uc:CvElementInfo Category="ArrowButton" Confidence="Runtime" Region="113, 158, 358, 34" Score="1" />
+              <uc:CvElementInfo Category="InputBox" Confidence="Runtime" Region="1235, 15, 65, 21" Score="1" />
+            </scg:List>
+          </uc:CVCache.CvUiElements>
+          <uc:CVCache.OcrTexts>
+            <scg:List x:TypeArguments="uc:OcrTextInfo" Capacity="64">
+              <uc:OcrTextInfo Region="150, 18, 51, 13" Text="ACME" />
+              <uc:OcrTextInfo Region="208, 18, 58, 17" Text="System" />
+              <uc:OcrTextInfo Region="274, 18, 5, 13" Text="1" />
+              <uc:OcrTextInfo Region="513, 19, 159, 15" Text="acme-test.uipath.com" />
+              <uc:OcrTextInfo Region="678, 18, 44, 15" Text="03W???" />
+              <uc:OcrTextInfo Region="1174, 20, 36, 10" Text="Home" />
+              <uc:OcrTextInfo Region="1241, 20, 22, 13" Text="Log" />
+              <uc:OcrTextInfo Region="1268, 20, 22, 10" Text="Out" />
+              <uc:OcrTextInfo Region="513, 53, 41, 12" Text="Report" />
+              <uc:OcrTextInfo Region="559, 55, 24, 7" Text="was" />
+              <uc:OcrTextInfo Region="589, 52, 56, 13" Text="uploaded" />
+              <uc:OcrTextInfo Region="651, 57, 4, 1" Text="-" />
+              <uc:OcrTextInfo Region="661, 52, 77, 10" Text="conﬁrmation" />
+              <uc:OcrTextInfo Region="745, 52, 9, 10" Text="id" />
+              <uc:OcrTextInfo Region="760, 52, 9, 10" Text="is" />
+              <uc:OcrTextInfo Region="513, 74, 243, 10" Text="7a59SefOdf878d88C-9b36a299a4cl7cd" />
+              <uc:OcrTextInfo Region="153, 96, 121, 33" Text="Reports" />
+              <uc:OcrTextInfo Region="311, 96, 108, 33" Text="Upload" />
+              <uc:OcrTextInfo Region="432, 96, 64, 26" Text="Yeal" />
+              <uc:OcrTextInfo Region="166, 172, 36, 10" Text="Home" />
+              <uc:OcrTextInfo Region="225, 172, 47, 13" Text="Reports" />
+              <uc:OcrTextInfo Region="277, 178, 4, 1" Text="—" />
+              <uc:OcrTextInfo Region="287, 172, 42, 13" Text="Upload" />
+              <uc:OcrTextInfo Region="334, 172, 37, 13" Text="Yearly" />
+              <uc:OcrTextInfo Region="377, 172, 40, 13" Text="Report" />
+              <uc:OcrTextInfo Region="221, 220, 41, 10" Text="Please" />
+              <uc:OcrTextInfo Region="267, 220, 12, 10" Text="ﬁll" />
+              <uc:OcrTextInfo Region="285, 220, 9, 10" Text="in" />
+              <uc:OcrTextInfo Region="299, 220, 18, 10" Text="the" />
+              <uc:OcrTextInfo Region="322, 220, 54, 13" Text="following" />
+              <uc:OcrTextInfo Region="381, 220, 27, 10" Text="form" />
+              <uc:OcrTextInfo Region="413, 220, 10, 10" Text="to" />
+              <uc:OcrTextInfo Region="429, 220, 14, 10" Text="be" />
+              <uc:OcrTextInfo Region="448, 220, 25, 10" Text="able" />
+              <uc:OcrTextInfo Region="478, 220, 11, 10" Text="to" />
+              <uc:OcrTextInfo Region="494, 220, 40, 13" Text="upload" />
+              <uc:OcrTextInfo Region="540, 222, 6, 8" Text="a" />
+              <uc:OcrTextInfo Region="551, 220, 45, 13" Text="speciﬁc" />
+              <uc:OcrTextInfo Region="601, 220, 45, 10" Text="Vendor" />
+              <uc:OcrTextInfo Region="649, 220, 38, 13" Text="Yearly" />
+              <uc:OcrTextInfo Region="221, 240, 43, 13" Text="Report." />
+              <uc:OcrTextInfo Region="220, 270, 48, 10" Text="Vendor" />
+              <uc:OcrTextInfo Region="272, 270, 40, 10" Text="TaxID:" />
+              <uc:OcrTextInfo Region="234, 302, 64, 10" Text="FR065748" />
+              <uc:OcrTextInfo Region="220, 344, 33, 10" Text="Year:" />
+              <uc:OcrTextInfo Region="234, 376, 29, 10" Text="2018" />
+              <uc:OcrTextInfo Region="419, 379, 8, 4" Text="v" />
+              <uc:OcrTextInfo Region="234, 425, 38, 10" Text="Select" />
+              <uc:OcrTextInfo Region="277, 425, 41, 13" Text="Report" />
+              <uc:OcrTextInfo Region="323, 425, 21, 10" Text="File" />
+              <uc:OcrTextInfo Region="402, 427, 4, 6" Text="-=" />
+              <uc:OcrTextInfo Region="412, 428, 20, 7" Text="~::~«" />
+              <uc:OcrTextInfo Region="509, 427, 4, 6" Text="v" />
+              <uc:OcrTextInfo Region="234, 474, 43, 13" Text="Upload" />
+              <uc:OcrTextInfo Region="282, 474, 42, 13" Text="Report" />
+              <uc:OcrTextInfo Region="151, 592, 59, 13" Text="Copyright" />
+              <uc:OcrTextInfo Region="214, 592, 10, 10" Text="©" />
+              <uc:OcrTextInfo Region="229, 592, 29, 10" Text="2017" />
+              <uc:OcrTextInfo Region="262, 592, 40, 10" Text="ACME" />
+              <uc:OcrTextInfo Region="307, 592, 53, 13" Text="Systems" />
+            </scg:List>
+          </uc:CVCache.OcrTexts>
+        </uc:CVCache>
+      </p:CVScope.DesignTimeCache>
+      <p:CVScope.OCREngine>
+        <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+          <ActivityFunc.Argument>
+            <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+          </ActivityFunc.Argument>
+          <ui:GoogleOCR FilterRegion="{x:Null}" Output="{x:Null}" Text="{x:Null}" AllowedCharacters="" ComputeSkewAngle="False" DeniedCharacters="" DisplayName="Tesseract OCR" ExtractWords="True" sap:VirtualizedContainerService.HintSize="216,22" sap2010:WorkflowViewState.IdRef="GoogleOCR_1" Image="[Image]" Invert="False" Language="eng" Profile="Screen" Scale="4" />
+        </ActivityFunc>
+      </p:CVScope.OCREngine>
+      <p:CVScope.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="b3c1628ca2fac23a85317475507a404a" Selector="&lt;html app='chrome.exe' title='ACME System 1 - Reports - Upload Yearly Report' /&gt;" WaitForReady="INTERACTIVE" />
+      </p:CVScope.Target>
+    </p:CVScope>
+    <Assign DisplayName="赋值" sap:VirtualizedContainerService.HintSize="514,62" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[out_UploadResultHash]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[out_UploadResultHash.Trim]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <WriteLine DisplayName="写入行" sap:VirtualizedContainerService.HintSize="514,64" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[&quot;uploadResult : &quot; + out_UploadResultHash]" />
+  </Sequence>
+</Activity>
