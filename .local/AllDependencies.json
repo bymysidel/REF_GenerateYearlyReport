@@ -1228,14 +1228,14 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\reng\\.nuget\\packages\\": {}
+    "C:\\Users\\R2\\.nuget\\packages\\": {}
   },
   "project": {
     "restore": {
       "projectUniqueName": "REF_GenerateYearlyReport",
       "projectName": "REF_GenerateYearlyReport",
       "projectPath": "E:\\WorkSpace\\REF_GenerateYearlyReport\\.local",
-      "packagesPath": "C:\\Users\\reng\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\R2\\.nuget\\packages\\",
       "outputPath": "E:\\WorkSpace\\REF_GenerateYearlyReport\\.local"
     },
     "frameworks": {
