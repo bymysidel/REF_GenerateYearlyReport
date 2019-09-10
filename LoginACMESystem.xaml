@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>693,1568</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>698,1615</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>LoginACMESystem_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -58,7 +58,7 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="LoginACMESystem" sap:VirtualizedContainerService.HintSize="653,1488" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="LoginACMESystem" sap:VirtualizedContainerService.HintSize="658,1495" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Default="[in_Config(&quot;Url_ACMESystem_Login&quot;).ToString]" Name="Url_ACMESystem_Login" />
     </Sequence.Variables>
@@ -67,19 +67,19 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:OpenBrowser BrowserType="Chrome" DisplayName="Open ACME System on Browser" Hidden="False" sap:VirtualizedContainerService.HintSize="615,1396" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" NewSession="False" Private="False" UiBrowser="[inout_ACMESystemTab]" Url="[Url_ACMESystem_Login]">
+    <ui:OpenBrowser BrowserType="Chrome" DisplayName="Open ACME System on Browser" Hidden="False" sap:VirtualizedContainerService.HintSize="620,1403" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" NewSession="True" Private="False" UiBrowser="[inout_ACMESystemTab]" Url="[Url_ACMESystem_Login]">
       <ui:OpenBrowser.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="585,1297" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="590,1304" sap2010:WorkflowViewState.IdRef="Sequence_5">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="547,1205" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="552,1212" sap2010:WorkflowViewState.IdRef="Sequence_4">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:Boolean" Name="LoginAlready" />
               </Sequence.Variables>
@@ -88,8 +88,8 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:MaximizeWindow Window="{x:Null}" DisplayName="Maximize Window" sap:VirtualizedContainerService.HintSize="509,22" sap2010:WorkflowViewState.IdRef="MaximizeWindow_2" />
-              <ui:UiElementExists sap2010:Annotation.AnnotationText="The text &quot;Welcome&quot; is flag of having logged in successful.Grab it to judge whether is user logged in or not." DisplayName="存在元素 'Welcome'" Exists="[LoginAlready]" sap:VirtualizedContainerService.HintSize="509,169" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
+              <ui:MaximizeWindow Window="{x:Null}" DisplayName="Maximize Window" sap:VirtualizedContainerService.HintSize="514,22" sap2010:WorkflowViewState.IdRef="MaximizeWindow_2" />
+              <ui:UiElementExists sap2010:Annotation.AnnotationText="The text &quot;Welcome&quot; is flag of having logged in successful.Grab it to judge whether is user logged in or not." DisplayName="存在元素 'Welcome'" Exists="[LoginAlready]" sap:VirtualizedContainerService.HintSize="514,172" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
                 <ui:UiElementExists.Target>
                   <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="056b9940377d289df1bd7c36f6859f0d" Selector="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;h1' tag='H1' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
                 </ui:UiElementExists.Target>
@@ -99,7 +99,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:UiElementExists>
-              <If sap2010:Annotation.AnnotationText="If logged in ACME system already,just do nothing except openning a browser in this workflow." Condition="[not LoginAlready]" DisplayName="IF条件" sap:VirtualizedContainerService.HintSize="509,842" sap2010:WorkflowViewState.IdRef="If_1">
+              <If sap2010:Annotation.AnnotationText="If logged in ACME system already,just do nothing except openning a browser in this workflow." Condition="[not LoginAlready]" DisplayName="IF条件" sap:VirtualizedContainerService.HintSize="514,846" sap2010:WorkflowViewState.IdRef="If_1">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>

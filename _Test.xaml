@@ -128,19 +128,19 @@
     </ui:CommentOut>
     <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="调用工作流文件" sap:VirtualizedContainerService.HintSize="432,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="UploadReport.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_TaxID">[TaxID]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_TaxID">DE456232</InArgument>
         <InArgument x:TypeArguments="ui:Browser" x:Key="in_ACMESystemTab">[ACMESystemTab]</InArgument>
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_YearlyReportPath">Yearly-Report-2017-RO892123.xlsx</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_YearlyReportPath">debug.log</InArgument>
         <OutArgument x:TypeArguments="x:String" x:Key="out_UploadResultHash">[strResultUploadHash]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="调用工作流文件" sap:VirtualizedContainerService.HintSize="432,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="UpdateWorkItem.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
         <InArgument x:TypeArguments="ui:Browser" x:Key="in_ACMESystemTab">[ACMESystemTab]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_WIID">269801</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_UploadResultHash">fffffffffffffff</InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Hash">6666666</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_WIID">230165</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
   </Sequence>

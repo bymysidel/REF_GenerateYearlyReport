@@ -7,7 +7,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1003,2003</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1003,1939</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GenerateYearlyReport_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="22">
@@ -59,7 +59,7 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GenerateYearlyReport" sap:VirtualizedContainerService.HintSize="963,1923" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="GenerateYearlyReport" sap:VirtualizedContainerService.HintSize="963,1819" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="ReportFilePath" />
       <Variable x:TypeArguments="x:String" Name="environment_Userprofile" />
@@ -88,34 +88,34 @@
       </Assign.Value>
     </Assign>
     <WriteLine DisplayName="写入行" sap:VirtualizedContainerService.HintSize="925,64" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[&quot;reportfilePath:&quot; + ReportFilePath]" />
-    <While DisplayName="先条件循环" sap:VirtualizedContainerService.HintSize="925,1424" sap2010:WorkflowViewState.IdRef="While_1">
+    <While DisplayName="先条件循环" sap:VirtualizedContainerService.HintSize="925,1320" sap2010:WorkflowViewState.IdRef="While_1">
       <While.Variables>
         <Variable x:TypeArguments="x:Int32" Default="1" Name="index" />
         <Variable x:TypeArguments="sd:DataTable" Name="dtReport" />
       </While.Variables>
       <While.Condition>[in_ReportFileNames IsNot Nothing AndAlso index &lt;= in_ReportFileNames.Count]</While.Condition>
-      <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="883,1258" sap2010:WorkflowViewState.IdRef="Sequence_6">
+      <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="883,1154" sap2010:WorkflowViewState.IdRef="Sequence_6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel 应用程序范围" sap:VirtualizedContainerService.HintSize="845,1064" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" Visible="False" WorkbookPath="[out_YearlyReportPath]">
+        <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel 应用程序范围" sap:VirtualizedContainerService.HintSize="845,960" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" MacroSetting="ReadFromExcelSettings" Visible="False" WorkbookPath="[out_YearlyReportPath]">
           <ui:ExcelApplicationScope.Body>
             <ActivityAction x:TypeArguments="ui:WorkbookApplication">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
               </ActivityAction.Argument>
-              <Sequence DisplayName="执行" sap:VirtualizedContainerService.HintSize="815,955" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <Sequence DisplayName="执行" sap:VirtualizedContainerService.HintSize="815,851" sap2010:WorkflowViewState.IdRef="Sequence_3">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
                 <ui:ReadCsvFile Encoding="{x:Null}" DataTable="[dtReport]" Delimitator="Comma" DisplayName="Read CSV" FilePath="[ReportFilePath + in_ReportFileNames.ElementAt(index-1).ToString]" sap:VirtualizedContainerService.HintSize="777,59" sap2010:WorkflowViewState.IdRef="ReadCsvFile_2" />
-                <If Condition="[in_ReportFileNames.Count  &lt;&gt; 1 andalso index &lt;&gt; 1]" DisplayName="IF条件" sap:VirtualizedContainerService.HintSize="777,662" sap2010:WorkflowViewState.IdRef="If_1">
+                <If Condition="[in_ReportFileNames.Count  &lt;&gt; 1 andalso index &lt;&gt; 1]" DisplayName="IF条件" sap:VirtualizedContainerService.HintSize="777,558" sap2010:WorkflowViewState.IdRef="If_1">
                   <If.Then>
-                    <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="368,469" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                    <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="368,365" sap2010:WorkflowViewState.IdRef="Sequence_7">
                       <Sequence.Variables>
                         <Variable x:TypeArguments="x:String" Name="strDtReport" />
                       </Sequence.Variables>
@@ -126,13 +126,12 @@
                       </sap:WorkflowViewStateService.ViewState>
                       <ui:MergeDataTable Destination="[dtTemplate]" DisplayName="合并数据表" sap:VirtualizedContainerService.HintSize="330,22" sap2010:WorkflowViewState.IdRef="MergeDataTable_1" MissingSchemaAction="Add" Source="[dtReport]" />
                       <ui:OutputDataTable DataTable="[dtTemplate]" DisplayName="输出数据表" sap:VirtualizedContainerService.HintSize="330,22" sap2010:WorkflowViewState.IdRef="OutputDataTable_1" Text="[strDtReport]" />
-                      <WriteLine DisplayName="写入行" sap:VirtualizedContainerService.HintSize="330,64" sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="[&quot;strDtReport :&quot; + strDtReport]" />
                       <ui:ExcelAppendRange DataTable="[dtTemplate]" DisplayName="追加范围" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_2" SheetName="Sheet1" />
                       <ui:ClearDataTable DataTable="[dtTemplate]" DisplayName="清除数据表" sap:VirtualizedContainerService.HintSize="330,22" sap2010:WorkflowViewState.IdRef="ClearDataTable_2" />
                     </Sequence>
                   </If.Then>
                   <If.Else>
-                    <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="368,509" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                    <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="368,405" sap2010:WorkflowViewState.IdRef="Sequence_8">
                       <Sequence.Variables>
                         <Variable x:TypeArguments="x:String" Name="strHead" />
                       </Sequence.Variables>
@@ -150,7 +149,6 @@
                         </Assign.Value>
                       </Assign>
                       <ui:OutputDataTable DataTable="[dtTemplate]" DisplayName="输出数据表" sap:VirtualizedContainerService.HintSize="330,22" sap2010:WorkflowViewState.IdRef="OutputDataTable_2" Text="[strHead]" />
-                      <WriteLine DisplayName="写入行" sap:VirtualizedContainerService.HintSize="330,64" sap2010:WorkflowViewState.IdRef="WriteLine_4" Text="[&quot;head:&quot; + strHead]" />
                       <ui:ExcelWriteRange AddHeaders="True" DataTable="[dtTemplate]" DisplayName="写入范围" sap:VirtualizedContainerService.HintSize="330,87" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="Sheet1" StartingCell="A1" />
                       <ui:ClearDataTable DataTable="[dtTemplate]" DisplayName="清除数据表" sap:VirtualizedContainerService.HintSize="330,22" sap2010:WorkflowViewState.IdRef="ClearDataTable_1" />
                     </Sequence>
